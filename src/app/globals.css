@@ -154,6 +154,7 @@ body::after {
 
   .hamburger {
     display: block;
+    z-index: 200;
   }
 
   /* dropdown menu */
