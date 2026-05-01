@@ -27,15 +27,15 @@ export default function Contact() {
 
     try {
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        {
-          user_name: form.name,
-          user_email: form.email,
-          message: form.message,
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-      );
+  process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+  {
+    user_name: form.name,
+    user_email: form.email,
+    message: form.message,
+  },
+  process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+);
 
       setSuccess(true);
       setForm({ name: "", email: "", message: "" });
