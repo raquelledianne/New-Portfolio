@@ -56,7 +56,7 @@ export default function Contact() {
         <form className="contactForm" onSubmit={handleSubmit}>
           <input
             className="input"
-            name="name"
+            name="user_name"
             placeholder="Your Name"
             value={form.name}
             onChange={handleChange}
@@ -65,7 +65,7 @@ export default function Contact() {
 
           <input
             className="input"
-            name="email"
+            name="user_email"
             placeholder="Your Email"
             value={form.email}
             onChange={handleChange}
