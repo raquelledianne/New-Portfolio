@@ -112,6 +112,76 @@ body::after {
   z-index: -9;
 }
 
+.nav-center {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-right {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 101;
+}
+@media (max-width: 768px) {
+
+  /* hide desktop layout */
+  .nav-center,
+  .nav-right {
+    display: none;
+  }
+
+  /* show hamburger */
+  .hamburger {
+    display: block;
+  }
+
+  /* dropdown menu */
+  .mobile-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+
+    background: rgba(10,10,15,0.95);
+    backdrop-filter: blur(16px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 20px;
+    padding: 30px 0;
+
+    transform: translateY(-120%);
+    opacity: 0;
+
+    transition: all 0.35s ease;
+    z-index: 100;
+  }
+
+  .mobile-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .mobile-menu a {
+    font-size: 18px;
+  }
+
+  .mobile-icons {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+  }
+}
+
 /* =========================
    PARTICLES LAYER (FIXED)
 ========================= */
