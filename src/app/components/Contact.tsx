@@ -30,7 +30,7 @@ export default function Contact() {
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         {
-          name: form.name,
+          user_name: form.name,
           email: form.email,
           message: form.message,
         },
