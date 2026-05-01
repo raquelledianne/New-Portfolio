@@ -1,59 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 export default function Contact() {
-  const [form, setForm] = useState({
-    user_name: "",
-    user_email: "",
-    message: "",
-  });
+  const formRef = useRef<HTMLFormElement>(null);
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
-    try {
-      await emailjs.send(
+    if (!formRef.current) return;
+
+    emailjs
+      .sendForm(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        {
-          user_name: form.user_name,
-          user_email: form.user_email,
-          message: form.message,
-        },
+        formRef.current,
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-      );
+      )
+      .then(() => {
+        setSuccess(true);
+        formRef.current?.reset();
 
-      setSuccess(true);
-      setForm({
-        user_name: "",
-        user_email: "",
-        message: "",
+        setTimeout(() => setSuccess(false), 3000);
+      })
+      .catch((err) => {
+        console.error("EmailJS error:", err);
+        setError("Something went wrong. Please try again.");
+      })
+      .finally(() => {
+        setLoading(false);
       });
-
-      setTimeout(() => setSuccess(false), 3000);
-    } catch (err) {
-      console.error("EmailJS error:", err);
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
@@ -61,22 +44,20 @@ export default function Contact() {
       <h2>Let’s Connect</h2>
 
       <div className="contactCard glass">
-        <form className="contactForm" onSubmit={handleSubmit}>
+        <form ref={formRef} onSubmit={sendEmail} className="contactForm">
           <input
             className="input"
+            type="text"
             name="user_name"
             placeholder="Your Name"
-            value={form.user_name}
-            onChange={handleChange}
             required
           />
 
           <input
             className="input"
+            type="email"
             name="user_email"
             placeholder="Your Email"
-            value={form.user_email}
-            onChange={handleChange}
             required
           />
 
@@ -84,8 +65,7 @@ export default function Contact() {
             className="textarea"
             name="message"
             placeholder="Your Message"
-            value={form.message}
-            onChange={handleChange}
+            rows={5}
             required
           />
 
