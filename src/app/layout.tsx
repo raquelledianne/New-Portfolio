@@ -1,9 +1,5 @@
+import CursorGlow from "../app/components/CursorGlow";
 import "./globals.css";
-
-export const metadata = {
-  title: "Raquelle Cadena Portfolio",
-  description: "Frontend Web Developer Portfolio",
-};
 
 export default function RootLayout({
   children,
@@ -12,7 +8,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <CursorGlow />
+
+        {children}
+      </body>
     </html>
   );
 }

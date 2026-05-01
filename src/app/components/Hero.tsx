@@ -20,8 +20,9 @@ export default function Hero() {
 
   return (
     <section className="hero">
+      {/* TEXT CONTENT */}
       <div className="hero-text">
-        <h1>{name}</h1>
+        <h1 className="hero-title">{name}</h1>
 
         {showRole && <h2 className="hero-role">{role}</h2>}
 
@@ -38,6 +39,7 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* PROFILE IMAGE */}
       <div className="hero-image">
         <img src="/profile.jpg" alt="Profile" />
       </div>

@@ -11,8 +11,8 @@ export default function Contact() {
   });
 
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<null | "success" | "error">(null);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -23,7 +23,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setStatus(null);
+    setError("");
 
     try {
       await emailjs.send(
@@ -37,35 +37,30 @@ export default function Contact() {
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
 
-      setStatus("success");
-      setShowSuccess(true);
-
+      setSuccess(true);
       setForm({ name: "", email: "", message: "" });
 
-      setTimeout(() => {
-        setShowSuccess(false);
-      }, 2500);
+      setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
-      console.error(err);
-      setStatus("error");
+      setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section id="contact" className="section">
+    <section id="contact" className="section contactSection">
       <h2>Let’s Connect</h2>
 
-      <div className="glass contactCard">
-        <form onSubmit={handleSubmit} className="contactForm">
-
+      <div className="contactCard glass">
+        <form className="contactForm" onSubmit={handleSubmit}>
           <input
             className="input"
             name="name"
             placeholder="Your Name"
             value={form.name}
             onChange={handleChange}
+            required
           />
 
           <input
@@ -74,6 +69,7 @@ export default function Contact() {
             placeholder="Your Email"
             value={form.email}
             onChange={handleChange}
+            required
           />
 
           <textarea
@@ -82,27 +78,22 @@ export default function Contact() {
             placeholder="Your Message"
             value={form.message}
             onChange={handleChange}
+            required
           />
 
-          <button className="btn btn-primary" type="submit" disabled={loading}>
+          <button className="btn btn-primary contactBtn" disabled={loading}>
             {loading ? "Sending..." : "Send Message"}
           </button>
 
-          {status === "success" && !showSuccess && (
-            <p className="successText">Message sent successfully ✔</p>
-          )}
-
-          {status === "error" && (
-            <p className="errorText">Something went wrong. Try again.</p>
-          )}
+          {error && <p className="errorText">{error}</p>}
         </form>
       </div>
 
       {/* SUCCESS OVERLAY */}
-      {showSuccess && (
+      {success && (
         <div className="successOverlay">
           <div className="successCard">
-            <div className="checkmark">✔</div>
+            <div className="checkmark">✓</div>
             <h3>Message Sent!</h3>
             <p>I’ll get back to you soon.</p>
           </div>
