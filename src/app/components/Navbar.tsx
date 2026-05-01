@@ -14,77 +14,92 @@ export default function Navbar() {
 
   return (
     <nav className="navbar glass">
-      {/* LEFT: Name */}
-      <div style={{ fontWeight: 700, fontSize: "18px" }}>
-        Raquelle Cadena
-      </div>
 
-      {/* CENTER: Links (desktop only) */}
-      <div className="nav-center">
-        <a onClick={() => handleClick("about")}>About</a>
-        <a onClick={() => handleClick("projects")}>Projects</a>
-        <a onClick={() => handleClick("tech")}>Experience</a>
-        <a onClick={() => handleClick("contact")}>Contact</a>
-      </div>
+      {/* =========================
+          DESKTOP NAV
+      ========================= */}
+      <div className="navbar-desktop">
 
-      {/* RIGHT: Icons + CTA (desktop only) */}
-      <div className="nav-right">
-        <a
-          href="https://www.linkedin.com/in/raquelle-cadena-7493013a7/"
-          target="_blank"
-        >
-          <FaLinkedin size={20} />
-        </a>
+        {/* LEFT */}
+        <div className="nav-left">
+          <div style={{ fontWeight: 700, fontSize: "18px" }}>
+            Raquelle Cadena
+          </div>
+        </div>
 
-        <a
-          href="https://www.github.com/raquelledianne"
-          target="_blank"
-        >
-          <FaGithub size={20} />
-        </a>
+        {/* CENTER */}
+        <div className="nav-center">
+          <a onClick={() => handleClick("about")}>About</a>
+          <a onClick={() => handleClick("projects")}>Projects</a>
+          <a onClick={() => handleClick("tech")}>Experience</a>
+          <a onClick={() => handleClick("contact")}>Contact</a>
+        </div>
 
-        <button
-          className="btn btn-primary"
-          onClick={() => handleClick("contact")}
-        >
-          Let’s Connect
-        </button>
-      </div>
-
-      {/* 🍔 HAMBURGER (mobile only) */}
-      <div className="hamburger" onClick={() => setOpen(!open)}>
-        {open ? <FaTimes /> : <FaBars />}
-      </div>
-
-      {/* 📱 MOBILE MENU */}
-      <div className={`mobile-menu ${open ? "open" : ""}`}>
-        <a onClick={() => handleClick("about")}>About</a>
-        <a onClick={() => handleClick("projects")}>Projects</a>
-        <a onClick={() => handleClick("tech")}>Experience</a>
-        <a onClick={() => handleClick("contact")}>Contact</a>
-
-        <div className="mobile-icons">
+        {/* RIGHT */}
+        <div className="nav-right">
           <a
             href="https://www.linkedin.com/in/raquelle-cadena-7493013a7/"
             target="_blank"
           >
-            <FaLinkedin size={22} />
+            <FaLinkedin size={20} />
           </a>
 
           <a
             href="https://www.github.com/raquelledianne"
             target="_blank"
           >
-            <FaGithub size={22} />
+            <FaGithub size={20} />
           </a>
+
+          <button
+            className="btn btn-primary"
+            onClick={() => handleClick("contact")}
+          >
+            Let’s Connect
+          </button>
+        </div>
+      </div>
+
+      {/* =========================
+          MOBILE NAV
+      ========================= */}
+      <div className="navbar-mobile">
+
+        {/* Hamburger */}
+        <div className="hamburger" onClick={() => setOpen(!open)}>
+          {open ? <FaTimes /> : <FaBars />}
         </div>
 
-        <button
-          className="btn btn-primary"
-          onClick={() => handleClick("contact")}
-        >
-          Let’s Connect
-        </button>
+        {/* Dropdown Menu */}
+        <div className={`mobile-menu ${open ? "open" : ""}`}>
+          <a onClick={() => handleClick("about")}>About</a>
+          <a onClick={() => handleClick("projects")}>Projects</a>
+          <a onClick={() => handleClick("tech")}>Experience</a>
+          <a onClick={() => handleClick("contact")}>Contact</a>
+
+          <div className="mobile-icons">
+            <a
+              href="https://www.linkedin.com/in/raquelle-cadena-7493013a7/"
+              target="_blank"
+            >
+              <FaLinkedin size={22} />
+            </a>
+
+            <a
+              href="https://www.github.com/raquelledianne"
+              target="_blank"
+            >
+              <FaGithub size={22} />
+            </a>
+          </div>
+
+          <button
+            className="btn btn-primary"
+            onClick={() => handleClick("contact")}
+          >
+            Let’s Connect
+          </button>
+        </div>
       </div>
     </nav>
   );
