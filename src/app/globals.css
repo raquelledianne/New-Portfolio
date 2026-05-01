@@ -132,6 +132,7 @@ body::after {
   display: none;
   font-size: 24px;
   cursor: pointer;
+  z-index: 200;
 }
 @media (max-width: 768px) {
 
@@ -154,7 +155,6 @@ body::after {
 
   .hamburger {
     display: block;
-    z-index: 200;
   }
 
   /* dropdown menu */
