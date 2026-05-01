@@ -711,3 +711,130 @@ p {
   color: #10b981;
   animation: pop 0.5s ease-out;
 }
+
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 36px !important;
+  }
+
+  h2 {
+    font-size: 26px !important;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+    padding: 120px 6%;
+  }
+
+  .hero-image img {
+    width: 220px;
+    height: 220px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .section {
+    padding: 100px 6%;
+  }
+
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .techGrid3D {
+    grid-template-columns: 1fr;
+  }
+
+  .contactCard {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-image img {
+    width: 260px;
+    height: 260px;
+  }
+
+  h1 {
+    font-size: 48px !important;
+  }
+
+  h2 {
+    font-size: 32px !important;
+  }
+
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .techGrid3D {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  .hero {
+    padding: 120px 8%;
+    gap: 40px;
+  }
+
+  .hero-image img {
+    width: 280px;
+    height: 280px;
+  }
+
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .techGrid3D {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .contactCard {
+    max-width: 90%;
+  }
+}
+
+.hero-text {
+  word-wrap: break-word;
+  max-width: 100%;
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 6%;
+  }
+
+  .navbar a {
+    margin: 6px;
+  }
+}
