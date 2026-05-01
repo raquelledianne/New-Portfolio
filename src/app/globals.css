@@ -132,7 +132,7 @@ body::after {
   display: none;
   font-size: 24px;
   cursor: pointer;
-  z-index: 200;
+  z-index: 9999;
 }
 @media (max-width: 768px) {
 
@@ -142,20 +142,23 @@ body::after {
     display: none;
   }
 
+@media (max-width: 768px) {
+
   .navbar-desktop {
-    display: none;
+    display: none !important;
   }
 
   .navbar-mobile {
-    display: flex;
+    display: flex !important;   
     width: 100%;
     justify-content: flex-end;
     align-items: center;
   }
 
   .hamburger {
-    display: block;
+    display: block !important;
   }
+}
 
   /* dropdown menu */
   .mobile-menu {
@@ -485,6 +488,7 @@ p {
   width: 100%;
   padding: 20px 10%;
   display: flex;
+  flex: wrap;
   justify-content: space-between;
   align-items: center;
   z-index: 50;
@@ -501,6 +505,7 @@ p {
 
 .navbar-mobile {
   display: none;
+  width: 100%;
 }
 
 .navbar a {
