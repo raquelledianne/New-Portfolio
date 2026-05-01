@@ -5,8 +5,8 @@ import emailjs from "@emailjs/browser";
 
 export default function Contact() {
   const [form, setForm] = useState({
-    name: "",
-    email: "",
+    user_name: "",
+    user_email: "",
     message: "",
   });
 
@@ -17,7 +17,10 @@ export default function Contact() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,21 +30,26 @@ export default function Contact() {
 
     try {
       await emailjs.send(
-  process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-  {
-    user_name: form.name,
-    user_email: form.email,
-    message: form.message,
-  },
-  process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-);
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          user_name: form.user_name,
+          user_email: form.user_email,
+          message: form.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
 
       setSuccess(true);
-      setForm({ name: "", email: "", message: "" });
+      setForm({
+        user_name: "",
+        user_email: "",
+        message: "",
+      });
 
       setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
+      console.error("EmailJS error:", err);
       setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
@@ -58,7 +66,7 @@ export default function Contact() {
             className="input"
             name="user_name"
             placeholder="Your Name"
-            value={form.name}
+            value={form.user_name}
             onChange={handleChange}
             required
           />
@@ -67,7 +75,7 @@ export default function Contact() {
             className="input"
             name="user_email"
             placeholder="Your Email"
-            value={form.email}
+            value={form.user_email}
             onChange={handleChange}
             required
           />
@@ -81,7 +89,11 @@ export default function Contact() {
             required
           />
 
-          <button className="btn btn-primary contactBtn" disabled={loading}>
+          <button
+            type="submit"
+            className="btn btn-primary contactBtn"
+            disabled={loading}
+          >
             {loading ? "Sending..." : "Send Message"}
           </button>
 
